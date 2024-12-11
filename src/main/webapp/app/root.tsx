@@ -13,6 +13,8 @@ import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
 import SecuredContent from "~/components/secured-content";
 import axios from "axios";
+import { globalStyles } from "~/appStyles";
+import { css } from '@linaria/core';
 
 export async function loader() {
     const response = await axios.get("/api/public/oauth2/info");
@@ -33,6 +35,59 @@ export const links: Route.LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
 ];
 
+const navbarStyle = css`
+  background-color: #2d3748;
+  color: #fff;
+  padding: 1rem;
+`;
+
+const containerStyle = css`
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+`;
+
+const titleStyle = css`
+  font-size: 1.25rem;
+  font-weight: bold;
+`;
+
+const buttonStyle = css`
+  background-color: #4299e1;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  border-radius: 0.25rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+`;
+
+const signOutButtonStyle = css`
+  background-color: #ef4444;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  color: #fff;
+  margin-left: 1rem;
+  margin-right: 1rem;
+`;
+
+const mainStyle = css`
+  padding-top: 4rem;
+  padding: 1rem;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const preStyle = css`
+  width: 100%;
+  padding: 1rem;
+  overflow-x: auto;
+`;
+
 function Navbar() {
     const auth = useAuth();
 
@@ -42,15 +97,15 @@ function Navbar() {
     }
 
     return (
-        <nav className="bg-gray-800 text-white p-4">
-            <div className="container mx-auto flex justify-between items-center">
-                <h1 className="text-xl font-bold">My App</h1>
+        <nav className={navbarStyle}>
+            <div className={containerStyle}>
+                <h1 className={titleStyle}>My App</h1>
                 <div>
                     {auth.isAuthenticated ? (
                         <>
                             <span className="mr-4">Welcome, {auth.user?.profile.email}!</span>
                             <button
-                                className="bg-red-500 px-4 py-2 rounded"
+                                className={signOutButtonStyle}
                                 onClick={() => auth.removeUser()}
                             >
                                 Sign out
@@ -58,7 +113,7 @@ function Navbar() {
                         </>
                     ) : (
                         <button
-                            className="bg-blue-500 px-4 py-2 rounded"
+                            className={buttonStyle}
                             onClick={() => auth.signinRedirect()}
                         >
                             Sign in
@@ -70,12 +125,11 @@ function Navbar() {
     );
 }
 
-
 export function Layout({ children }: { children: React.ReactNode }) {
     const authConfig = useLoaderData<typeof loader>();
 
     return (
-        <html lang="en">
+        <html lang="en" className={globalStyles}>
         <head>
             <meta charSet="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -116,11 +170,11 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     }
 
     return (
-        <main className="pt-16 p-4 container mx-auto">
+        <main className={mainStyle}>
             <h1>{message}</h1>
             <p>{details}</p>
             {stack && (
-                <pre className="w-full p-4 overflow-x-auto">
+                <pre className={preStyle}>
           <code>{stack}</code>
         </pre>
             )}

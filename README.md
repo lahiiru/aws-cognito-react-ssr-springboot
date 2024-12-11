@@ -1,10 +1,10 @@
-# AWS Cognito + React Router 7 + SpringBoot + Java
+# AWS Cognito + React Router v7 + CSS in JS using Linaria + SpringBoot + Java
 
 ## Technologies used
 ###  AWS Cognito as the identity provider.
 - Cognito client is created using the AWS console choosing SPA / React as the application.
 ### React Router 7 (with SSR) for as the frontend framework.  
-- Frontend project is created at `src/main/webapp` using vite react router 7 template in RR7 framework mode.
+- Frontend project is created at `src/main/webapp` using vite react router v7 template.
 - Axios interceptor is configured to use the jwt token from the localStorage
 - Axios is configured to work correctly in server mode and client mode using correct API base URL
 - Cognito OIDC related configurations are loaded from the backend using a public endpoint at the server-side rendering. This enables the frontend only depends on the back end API base URL.
