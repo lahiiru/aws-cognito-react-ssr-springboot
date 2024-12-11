@@ -1,0 +1,3 @@
+spring.security.oauth2.resourceserver.jwt.issuer-uri=<YOUR COGNITO URL HERE. e.g. https://cognito-idp.us-east-1.amazonaws.com/us-east-1_frdgRGdG>
+
+client.cognito.client-id=<YOUR COGNITO CLIENT ID HERE. e.g. fssw323resfrefsdvsd>
