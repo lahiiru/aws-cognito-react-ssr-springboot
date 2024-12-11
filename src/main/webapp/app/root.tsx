@@ -48,6 +48,7 @@ const containerStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 3rem;
 `;
 
 const titleStyle = css`
@@ -58,13 +59,19 @@ const titleStyle = css`
 const buttonStyle = css`
   background-color: #4299e1;
   padding: 0.5rem 1rem;
+  color: #fff;
   border-radius: 0.25rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 `;
 
 const signOutButtonStyle = css`
-  background-color: #f56565;
+  background-color: #ef4444;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
+  color: #fff;
+  margin-left: 1rem;
+  margin-right: 1rem;
 `;
 
 const mainStyle = css`
